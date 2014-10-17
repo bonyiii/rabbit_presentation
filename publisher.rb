@@ -1,10 +1,11 @@
-$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
+#$LOAD_PATH.unshift(File.expand_path('../lib', __FILE__))
 #$LOAD_PATH.unshift(File.expand_path('../lib/amqp', __FILE__))
 
 require 'json'
 require 'bundler/setup'
 Bundler.require(:default, ENV.fetch("RACK_ENV") { "development" })
 
+#set :bind, '0.0.0.0'
 
 class Publisher < Sinatra::Base
 
