@@ -2,7 +2,8 @@ require 'demo_amqp'
 
 #set :bind, '0.0.0.0'
 
-DemoAmqp.connect
+$amqp = DemoAmqp.new
+$amqp.connect
 
 class Publisher < Sinatra::Base
 
@@ -11,7 +12,7 @@ class Publisher < Sinatra::Base
   end
 
   post '/message' do
-    AMQP.channel.default_exchange.publish({ message: params[:message], lang: params[:lang], direction: params[:direction] }.to_json)
+    $amqp.send({ message: params[:message], lang: params[:lang], direction: params[:direction] })
     redirect to('/')
   end
 end
