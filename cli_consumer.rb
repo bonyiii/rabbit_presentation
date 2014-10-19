@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
+$stdout.sync = true
 
 require 'json'
 require 'bundler'
@@ -10,7 +11,7 @@ AMQP.start do |connection, open_ok|
   channel  = AMQP::Channel.new(connection)
   exchange = channel.fanout("testing")
 
-  channel.queue("heywait") do |queue|
+  channel.queue("cli_consumer", exclusive: true) do |queue|
     queue.bind(exchange).subscribe do |metadata, payload|
       puts "Received a message: #{payload.inspect}."
 
