@@ -1,16 +1,64 @@
 <!DOCTYPE html>
-<form action="/message" method="post">
-  <input type="text" name="message" id="message" />
-  <select name="lang">
-    <option value="hu">Hungarian</option>
-    <option value="es">Spanish</option>
-    <option value="en">English</option>
-    <option value="de">German</option>
-  </select>
-  <br>
-  <input type="radio" name="direction" value="success">Up
-  <input type="radio" name="direction" value="failure">Down
-  <br>
-  <input type="submit" value="Üzenj" />
-</form>
-
+<link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.6/css/foundation.min.css" rel="stylesheet" type="text/css">
+<style>
+  body{
+    background-image: url("http://m.cdn.blog.hu/di/digitalnatives/image/photo1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  fieldset {
+    background-color: #fff;
+  }
+  form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, 50%);
+  }
+</style>
+<div class="row">
+  <div class="large-5 large-centered columns">
+    <form action="/message" method="post">
+      <fieldset>
+        <div class="row collapse">
+          <div class="small-10 large-9 large-centered columns">
+            <h2>Send Message</h2>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-4 large-3 columns">
+            <span class="prefix">Message</span>
+          </div>
+          <div class="small-8 large-9 columns">
+            <input type="text" name="message" id="message" />
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-4 large-3 columns">
+            <span class="prefix">Language</span>
+          </div>
+          <div class="small-8 large-9 columns">
+            <select name="lang">
+              <option value="hu">Hungarian</option>
+              <option value="es">Spanish</option>
+              <option value="en">English</option>
+              <option value="de">German</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 large-centered columns">
+            <input type="radio" name="direction" value="success">Up
+            <input type="radio" name="direction" value="failure">Down
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-3 large-centered columns">
+            <input type="submit" value="Send" class="button" />
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
