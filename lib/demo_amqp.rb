@@ -18,9 +18,9 @@ class DemoAmqp
     EventMachine.next_tick do
       channel ||= AMQP::Channel.new(AMQP.connection)
       @exchange = channel.fanout("testing")
-      3.times do |i|
+      1.times do |i|
         exchange.publish("A warmup message #{i} from #{Time.now.strftime('%H:%M:%S %m/%b/%Y')}", :routing_key => "amqpgem.examples.rails23.warmup")
-        puts "[after_fork/amqp] Publishing a warmup message ##{i}"
+        puts "Publishing a warmup message ##{i}"
       end
     end
   end
