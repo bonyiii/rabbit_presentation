@@ -16,8 +16,8 @@ class DemoAmqp
     t = Thread.new { AMQP.start }
     sleep(1.0)
     EventMachine.next_tick do
-      channel ||= AMQP::Channel.new(AMQP.connection)
-      @exchange = channel.fanout("testing")
+      @channel ||= AMQP::Channel.new(AMQP.connection)
+      @exchange = @channel.fanout("testing")
       1.times do |i|
         exchange.publish("A warmup message #{i} from #{Time.now.strftime('%H:%M:%S %m/%b/%Y')}", :routing_key => "amqpgem.examples.rails23.warmup")
         puts "Publishing a warmup message ##{i}"
@@ -28,6 +28,15 @@ class DemoAmqp
   def send(message)
     EM.next_tick do
       $amqp.exchange.publish(message.to_json)
+    end
+  end
+
+  def listen
+    EventMachine.next_tick do
+      queue ||= @channel.queue("web_consumer", auto_delete: true).bind(exchange)
+      queue.subscribe do |payload|
+        puts payload
+      end
     end
   end
 end

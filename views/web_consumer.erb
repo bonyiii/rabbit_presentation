@@ -1,0 +1,12 @@
+<script type="text/javascript" src="http://bear-docker.home:7777/faye/client.js"> </script>
+<script type="text/javascript">
+var client = new Faye.Client('http://bear-docker.home:7777/faye');
+
+client.subscribe('/messages', function(message) {
+  container = document.getElementById("messages");
+  container.innerHTML = container.innerHTML + "<br>" + message
+});
+</script>
+
+<div id="messages">
+</div>
