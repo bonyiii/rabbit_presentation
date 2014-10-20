@@ -1,1 +1,1 @@
-web: bundle exec unicorn publisher.ru -p $PORT -c ./unicorn/production.rb
+web: bundle exec unicorn -p $PORT -c ./unicorn/production.rb
