@@ -1,29 +1,7 @@
-# RabbitProducer
+# RabbitPresentation
 
-TODO: Write a gem description
+These demo application for my [presentation](http://slides.com/bonyiii/rabbit-mq/live)
 
-## Installation
+To try out run ```foreman start```
 
-Add this line to your application's Gemfile:
-
-    gem 'rabbit_producer'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rabbit_producer
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/rabbit_producer/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Message sending form will be available on localhost:9292
