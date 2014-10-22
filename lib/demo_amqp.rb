@@ -2,7 +2,7 @@ require 'json'
 
 class DemoAmqp
 
-  attr_reader :exchange
+  attr_reader :exchange, :gyula
 
   def self.connect
     new.connect
@@ -18,6 +18,7 @@ class DemoAmqp
     EventMachine.next_tick do
       @channel ||= AMQP::Channel.new(AMQP.connection)
       @exchange = @channel.fanout("testing")
+      @gyula = @channel.direct("gyula")
       1.times do |i|
         exchange.publish("A warmup message #{i} from #{Time.now.strftime('%H:%M:%S %m/%b/%Y')}", :routing_key => "amqpgem.examples.rails23.warmup")
         puts "Publishing a warmup message ##{i}"
@@ -28,6 +29,7 @@ class DemoAmqp
   def send(message)
     EM.next_tick do
       $amqp.exchange.publish(message.to_json)
+      $amqp.gyula.publish(message.to_json, routing_key: "rabbit")
     end
   end
 
